@@ -50,6 +50,7 @@ function AIChat() {
 //   ========================================= */
 
 const API_URL = import.meta.env.VITE_BACKEND_URL;
+console.log("Backend URL:", API_URL);
 
 
 
@@ -73,6 +74,7 @@ const sendMessage = async (messageText = input) => {
   setIsTyping(true);
 
   try {
+    console.log("Backend URL:", API_URL);
     const response = await fetch(
       `${API_URL}/api/chat`,
       {
