@@ -49,6 +49,10 @@ function AIChat() {
 //      SEND MESSAGE
 //   ========================================= */
 
+const API_URL = import.meta.env.BACKEND_URL;
+
+
+
 const sendMessage = async (messageText = input) => {
   const text = messageText.trim();
 
@@ -70,7 +74,7 @@ const sendMessage = async (messageText = input) => {
 
   try {
     const response = await fetch(
-      "http://127.0.0.1:8000/api/chat",
+      `${API_URL}/api/chat`,
       {
         method: "POST",
         headers: {
