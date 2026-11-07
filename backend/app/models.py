@@ -22,12 +22,13 @@
 # embedding_model=HuggingFaceEmbeddings(model="sentence-transformers/all-mpnet-base-v2")
 # print("embedding  model created  Succesfully !  " )
 
-
+import os 
 print("Starting models.py...", flush=True)
 
 from dotenv import load_dotenv
 from langchain_groq import ChatGroq
-from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFaceEndpointEmbeddings
+
 
 load_dotenv()
 
@@ -43,8 +44,15 @@ print("Groq model initialized!", flush=True)
 
 print("Loading Hugging Face embedding model...", flush=True)
 
-embedding_model = HuggingFaceEmbeddings(
-    model="sentence-transformers/all-mpnet-base-v2"
+# embedding_model = HuggingFaceEmbeddings(
+#     model="sentence-transformers/all-mpnet-base-v2"
+# )
+
+
+embedding_model = HuggingFaceEndpointEmbeddings(
+    model="sentence-transformers/all-mpnet-base-v2",
+    task="feature-extraction",
+    huggingfacehub_api_token=os.getenv("HF_TOKEN")
 )
 
 print("Embedding model loaded successfully!", flush=True)
