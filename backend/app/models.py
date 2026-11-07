@@ -1,25 +1,50 @@
 # imports 
 
-from dotenv import  load_dotenv
+# from dotenv import  load_dotenv
+# from langchain_groq import ChatGroq
+# from langchain_huggingface import HuggingFaceEmbeddings
+
+
+
+# load_dotenv()
+
+
+# # Creating the chat model 
+# chat_model=ChatGroq(
+#     model='openai/gpt-oss-120b',
+#     temperature=0,
+#     max_tokens=500,
+# )
+# print("Chat model created  Succesfully !  " )
+
+
+# # Creating the embedding model 
+# embedding_model=HuggingFaceEmbeddings(model="sentence-transformers/all-mpnet-base-v2")
+# print("embedding  model created  Succesfully !  " )
+
+
+print("Starting models.py...", flush=True)
+
+from dotenv import load_dotenv
 from langchain_groq import ChatGroq
 from langchain_huggingface import HuggingFaceEmbeddings
 
-
-
 load_dotenv()
 
+print("Initializing Groq model...", flush=True)
 
-# Creating the chat model 
-chat_model=ChatGroq(
-    model='openai/gpt-oss-120b',
+chat_model = ChatGroq(
+    model="openai/gpt-oss-120b",
     temperature=0,
     max_tokens=500,
 )
-print("Chat model created  Succesfully !  " )
 
+print("Groq model initialized!", flush=True)
 
-# Creating the embedding model 
-embedding_model=HuggingFaceEmbeddings(model="sentence-transformers/all-mpnet-base-v2")
-print("embedding  model created  Succesfully !  " )
+print("Loading Hugging Face embedding model...", flush=True)
 
+embedding_model = HuggingFaceEmbeddings(
+    model="sentence-transformers/all-mpnet-base-v2"
+)
 
+print("Embedding model loaded successfully!", flush=True)

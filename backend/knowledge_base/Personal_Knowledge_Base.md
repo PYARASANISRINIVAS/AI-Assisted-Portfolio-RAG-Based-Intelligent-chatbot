@@ -10,7 +10,7 @@ I am Pyarasani Srinivas, a technology enthusiast passionate about Artificial Int
 My technical interests include building intelligent applications using Machine Learning, Retrieval-Augmented Generation (RAG), Large Language Models (LLMs), and Agentic AI. I am continuously exploring emerging technologies and expanding my knowledge to create innovative, AI-driven solutions.
 
 
-## Education
+## Education Background
 
 - Course: Bachelor of Technology (B.Tech)
 - Branch: Computer Science and Engineering (CSE)
