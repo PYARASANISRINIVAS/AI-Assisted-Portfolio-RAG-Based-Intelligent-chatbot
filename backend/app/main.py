@@ -13,11 +13,8 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",
-        
-    ],
-    allow_credentials=True,
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -49,3 +46,8 @@ def home():
 def chat_endpoint(request: ChatRequest):
     return {
         'answer':chat_with_model(request.question)}
+
+
+@app.on_event("startup")
+async def startup_event():
+    print("CORS configuration loaded successfully!", flush=True)
