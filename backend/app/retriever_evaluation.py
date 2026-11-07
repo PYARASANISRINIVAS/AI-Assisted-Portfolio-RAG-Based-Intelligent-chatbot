@@ -103,12 +103,11 @@ for i in golden_dataset:
     # if iteration ==5:
     #     break 
 
-# # Creating the excel
-# df=pd.DataFrame(output_data)
-# df.to_csv("evaluation_similarity_reranking.csv",index=False)
-# print("**********************************************")
-# print("CSV Created ")
-
+# Creating the excel
+df=pd.DataFrame(output_data)
+df.to_csv("evaluation_similarity_reranking.csv",index=False)
+print("**********************************************")
+print("CSV Created ")
 
 
 

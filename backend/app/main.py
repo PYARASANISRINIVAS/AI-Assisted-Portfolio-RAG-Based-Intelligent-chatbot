@@ -3,9 +3,9 @@
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
-
-from app.graph.workflow import workflow
+from app.rag_chatbot import chat_with_model
 
 
 app = FastAPI()
@@ -33,17 +33,18 @@ def home():
     }
 
 
+
+
+
+# @app.post("/chat")
+# def chat(request: ChatRequest):
+
+#     return StreamingResponse(
+#         stream_chat_response(request.message),
+#         media_type="text/plain"
+#     )
+
 @app.post("/api/chat")
-def chat(request: ChatRequest):
-
-    result = workflow.invoke({
-        "question": request.question,
-        "refined_query": "",
-        "documents": [],
-        "context": "",
-        "answer": ""
-    })
-
+def chat_endpoint(request: ChatRequest):
     return {
-        "answer": result["answer"]
-    }
+        'answer':chat_with_model(request.question)}

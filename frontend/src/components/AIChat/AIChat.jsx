@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import "./AIChat.css";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 function AIChat() {
   const [isOpen, setIsOpen] = useState(true);
@@ -43,9 +45,9 @@ function AIChat() {
   ];
 
 
-  /* =========================================
-     SEND MESSAGE
-  ========================================= */
+//   /* =========================================
+//      SEND MESSAGE
+//   ========================================= */
 
 const sendMessage = async (messageText = input) => {
   const text = messageText.trim();
@@ -85,6 +87,9 @@ const sendMessage = async (messageText = input) => {
     }
 
     const data = await response.json();
+    console.log("Full backend response:", data);
+    console.log("Answer received:", data.answer);
+    console.log("Answer type:", typeof data.answer);
 
     setMessages((current) => [
       ...current,
@@ -109,6 +114,132 @@ const sendMessage = async (messageText = input) => {
     setIsTyping(false);
   }
 };
+
+
+
+
+  /* =========================================
+     Send Message Streaming code 
+  ========================================== */
+/*
+
+const sendMessage = async (messageText = input) => {
+  const text = messageText.trim();
+
+  if (!text || isTyping) return;
+
+  const userMessage = {
+    id: Date.now(),
+    type: "user",
+    text,
+  };
+
+  const assistantId = Date.now() + 1;
+
+  // Add user message and an empty assistant message
+  setMessages((current) => [
+    ...current,
+    userMessage,
+    {
+      id: assistantId,
+      type: "assistant",
+      text: "",
+    },
+  ]);
+
+  setInput("");
+  setIsTyping(true);
+
+  try {
+    const response = await fetch(
+      "http://127.0.0.1:8000/api/chat",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          question: text,
+        }),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to get response from backend");
+    }
+
+    // Get the response stream reader
+    const reader = response.body.getReader();
+
+    // Convert received bytes into text
+    const decoder = new TextDecoder();
+
+    let firstChunk = true;
+
+    while (true) {
+      const { done, value } = await reader.read();
+
+      if (done) break;
+
+      const chunk = decoder.decode(value, {
+        stream: true,
+      });
+
+      if (firstChunk) {
+        setIsTyping(false);
+        firstChunk = false;
+      }
+
+      // Append each incoming chunk to the assistant message
+      setMessages((current) =>
+        current.map((message) =>
+          message.id === assistantId
+            ? {
+                ...message,
+                text: message.text + chunk,
+              }
+            : message
+        )
+      );
+    }
+
+    // Process any remaining buffered text
+    const remaining = decoder.decode();
+
+    if (remaining) {
+      setMessages((current) =>
+        current.map((message) =>
+          message.id === assistantId
+            ? {
+                ...message,
+                text: message.text + remaining,
+              }
+            : message
+        )
+      );
+    }
+
+  } catch (error) {
+    console.error("AI Chat Error:", error);
+
+    setMessages((current) =>
+      current.map((message) =>
+        message.id === assistantId
+          ? {
+              ...message,
+              text: "Sorry, I couldn't connect to the AI assistant right now.",
+            }
+          : message
+      )
+    );
+
+  } finally {
+    setIsTyping(false);
+  }
+};
+
+*/
+
 
   /* =========================================
      ENTER KEY
@@ -207,7 +338,14 @@ const sendMessage = async (messageText = input) => {
                 )}
 
                 <div className="ai-message-bubble">
-                  {message.text}
+                    {message.type === "assistant" ? (
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                        {message.text}
+                    </ReactMarkdown>
+                    ) : (
+                    message.text
+                    )}
+                  
                 </div>
 
               </div>
