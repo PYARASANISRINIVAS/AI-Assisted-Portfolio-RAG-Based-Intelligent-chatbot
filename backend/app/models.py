@@ -57,7 +57,7 @@ print("Loading Hugging Face embedding model...", flush=True)
 
 
 embedding_model = GoogleGenerativeAIEmbeddings(
-    model="gemini-embedding-2",
+    model="gemini-embedding-001",
     output_dimensionality=768,  # Suggested: 768, 1536, or 3072 (default)
 )
 

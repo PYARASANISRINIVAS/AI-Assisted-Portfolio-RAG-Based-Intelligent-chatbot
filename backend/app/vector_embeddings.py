@@ -1,8 +1,9 @@
 
 from langchain_text_splitters import MarkdownHeaderTextSplitter
 from langchain_community.vectorstores import FAISS
+import time
 
-from model_defination import embedding_model
+from models import embedding_model
 # loading the markdown file
 
 with open(r"..\knowledge_base\Personal_Knowledge_Base.md","r") as f:
@@ -19,30 +20,52 @@ splitter=MarkdownHeaderTextSplitter(
                          strip_headers=False,
                          )
 
-chunks=splitter.split_text(data)
+documents=splitter.split_text(data)
 
 
-# Faiss DB Creation 
-db=FAISS.from_documents(
-    documents=chunks,
-    embedding=embedding_model
-)
+# # Faiss DB Creation 
+# db=FAISS.from_documents(
+#     documents=chunks,
+#     embedding=embedding_model
+# )
 
 
-db.save_local(r"FAISS","faiss_index")
+# db.save_local(r"FAISS","faiss_index")
 
 
 # Chroma DB Creation 
 
 from langchain_chroma import Chroma
-from vector_embeddings import chunks
-chroma_db=Chroma.from_documents(
-    documents=chunks,
-    embedding=embedding_model,
+
+
+chroma_db=Chroma(
+    embedding_function=embedding_model,
     collection_name="Portfolio",
     persist_directory="./store_chroma"
 
 )
+
+
+# Process documents batch by batch
+batch_size = 10
+total_documents = len(documents)
+
+for i in range(0, total_documents, batch_size):
+
+    batch = documents[i:i + batch_size]
+
+    chroma_db.add_documents(batch)
+
+    processed = min(i + batch_size, total_documents)
+
+    print(f"Processed {processed}/{total_documents} documents")
+
+    # Wait before processing the next batch
+    if processed < total_documents:
+        print("Waiting 5 seconds...")
+        time.sleep(5)
+
+print("All document embeddings stored successfully!")
 
 
 

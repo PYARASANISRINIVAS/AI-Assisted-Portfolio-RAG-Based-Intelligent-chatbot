@@ -1,16 +1,19 @@
 # Personal Knowledge Base
 
+
 A centralized knowledge base containing professional information, technical skills, projects, certifications, achievements, and technical interests. This document serves as the primary knowledge source for my Personal Assistant RAG Chatbot.
 
 
-# Personal Profile
+# srinivas's Personal Profile
 
-I am Pyarasani Srinivas, a technology enthusiast passionate about Artificial Intelligence, Machine Learning, Data Science, and Generative AI. I specialize in Python, machine learning algorithms, data processing, and modern AI frameworks to develop practical solutions to real-world challenges.
+I am Pyarasani.Srinivas, a technology enthusiast passionate about Artificial Intelligence, Machine Learning, Data Science, and Generative AI. I specialize in Python, machine learning algorithms, data processing, and modern AI frameworks to develop practical solutions to real-world challenges.
 
 My technical interests include building intelligent applications using Machine Learning, Retrieval-Augmented Generation (RAG), Large Language Models (LLMs), and Agentic AI. I am continuously exploring emerging technologies and expanding my knowledge to create innovative, AI-driven solutions.
 
 
 ## Education Background
+
+- Education qualification 
 
 - Course: Bachelor of Technology (B.Tech)
 - Branch: Computer Science and Engineering (CSE)
