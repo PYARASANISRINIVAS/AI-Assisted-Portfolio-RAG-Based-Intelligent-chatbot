@@ -5,15 +5,15 @@ python-dotenv
 langchain-community
 langchain-core
 langchain-groq
-langchain-text-splitters
+# langchain-text-splitters
 langchain-huggingface
 
-sentence-transformers
+# sentence-transformers
 faiss-cpu
-rank_bm25
+# rank_bm25
 chromadb 
 langchain-chroma
-
+langchain_google_genai
 
 
 pydantic

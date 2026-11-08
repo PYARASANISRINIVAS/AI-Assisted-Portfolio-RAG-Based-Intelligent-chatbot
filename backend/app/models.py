@@ -3,7 +3,7 @@
 # from dotenv import  load_dotenv
 # from langchain_groq import ChatGroq
 # from langchain_huggingface import HuggingFaceEmbeddings
-
+from langchain_google_genai import GoogleGenerativeAIEmbeddings
 
 
 # load_dotenv()
@@ -27,7 +27,7 @@ print("Starting models.py...", flush=True)
 
 from dotenv import load_dotenv
 from langchain_groq import ChatGroq
-from langchain_huggingface import HuggingFaceEndpointEmbeddings
+# from langchain_huggingface import HuggingFaceEndpointEmbeddings
 
 
 load_dotenv()
@@ -56,9 +56,16 @@ print("Loading Hugging Face embedding model...", flush=True)
 # )
 
 
-embedding_model = HuggingFaceEmbeddings(
-    model="sentence-transformers/paraphrase-albert-small-v2"
+embedding_model = GoogleGenerativeAIEmbeddings(
+    model="gemini-embedding-2",
+    output_dimensionality=768,  # Suggested: 768, 1536, or 3072 (default)
 )
+
+
+
+# embedding_model = HuggingFaceEmbeddings(
+#     model="sentence-transformers/paraphrase-albert-small-v2"
+# )
 
 
 
