@@ -6,13 +6,13 @@ import remarkGfm from "remark-gfm";
 function AIChat() {
   const [isOpen, setIsOpen] = useState(true);
 
-  const [messages, setMessages] = useState([
-    {
-      id: 1,
-      type: "assistant",
-      text: "Hi! I'm Srinivas's AI assistant. Ask me about his projects, skills, education, or experience.",
-    },
-  ]);
+ const [messages, setMessages] = useState([
+  {
+    id: 1,
+    type: "assistant",
+    text: "Hi! I'm Srinivas's AI assistant. 👋 Ask me about his projects, skills, education, or experience.\n\n💡 A quick note: I'm currently running on a free-tier backend, so my first response may take a few extra seconds while the server wakes up. Thanks for your patience!"
+  },
+]);
 
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
