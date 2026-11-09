@@ -72,10 +72,11 @@ chain=prompt|chat_model
 
 
 def chat_with_model(query:str):
+    print("query", query)
     context=[doc.page_content for doc in retriver.invoke(query)]
     print(context)
     answer=chain.invoke({"query":query,"context":context,"history":history}).content
-    print(answer)
+    print("answer" ,answer)
     return answer
         
 
