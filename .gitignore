@@ -52,3 +52,5 @@ vectorstore/
 *.njsproj
 *.sln
 *.sw?
+
+/backend/.deepeval/

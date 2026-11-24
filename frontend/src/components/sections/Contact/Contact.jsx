@@ -131,8 +131,8 @@ function Contact() {
                 EMAIL
               </span>
 
-              <a href="mailto:your-email@gmail.com">
-                your-email@gmail.com
+              <a href="mailto:pyarasanisrinivas16@gmail.com">
+                pyarasanisrinivas16@gmail.com
               </a>
 
             </div>
@@ -171,7 +171,7 @@ function Contact() {
           <div className="contact-buttons">
 
             <a
-              href="mailto:your-email@gmail.com"
+              href="mailto:pyarasanisrinivas16@gmail.com"
               className="contact-button primary"
             >
               Email Me
